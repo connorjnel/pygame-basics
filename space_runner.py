@@ -22,14 +22,22 @@ clock = pygame.time.Clock()
 # Font
 game_font = pygame.font.Font("font/Pixeltype.ttf", 50)
 
-# Surfaces
-sky_surface = pygame.image.load("graphics/Sky.png")
-ground_surface = pygame.image.load("graphics/ground.png")
-text_surface = game_font.render("Space Runner", False, "Black")
+# Background Surfaces
+sky_surface = pygame.image.load("graphics/Sky.png").convert()
+ground_surface = pygame.image.load("graphics/ground.png").convert()
 
-# Enemies
-snail_surface = pygame.image.load("graphics/snail/snail1.png")
-snail_x_pos = 600
+# Score Text
+score_surface = game_font.render("Score:", False, "Black")
+score_rectangle = score_surface.get_rect(center=(400, 25))
+
+# Snail Enemy
+snail_surface = pygame.image.load("graphics/snail/snail1.png").convert_alpha()
+snail_rectangle = snail_surface.get_rect(bottomright=(600, 300))
+
+# Player
+player_surface = pygame.image.load(
+    "graphics/Player/player_walk_1.png").convert_alpha()
+player_rectangle = player_surface.get_rect(midbottom=(80, 300))
 
 # keep screen open - game loop
 while True:
@@ -40,14 +48,36 @@ while True:
             pygame.quit()
             exit()
 
+        # if event.type == pygame.MOUSEMOTION:
+        #     if player_rectangle.collidepoint(event.pos):
+        #         print("collission")
+
+    # Background
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0, 300))
-    screen.blit(text_surface, (300, 25))
+    pygame.draw.rect(screen, "Pink", score_rectangle)
+    pygame.draw.rect(screen, "Pink", score_rectangle, 15)
 
-    snail_x_pos -= 4
-    if snail_x_pos < -100:
-        snail_x_pos = 800
-    screen.blit(snail_surface, (snail_x_pos, 275))
+    # Score
+    screen.blit(score_surface, score_rectangle)
+
+    # Snail
+    snail_rectangle.x -= 4
+    if snail_rectangle.right <= 0:
+        snail_rectangle.left = 800
+    screen.blit(snail_surface, snail_rectangle)
+
+    # Player
+    screen.blit(player_surface, player_rectangle)
+
+    # Collision
+    # if player_rectangle.colliderect(snail_rectangle) is True:
+    #     print("collision")
+
+    # Mouse
+    # mouse_pos = pygame.mouse.get_pos()
+    # if player_rectangle.collidepoint((mouse_pos)):
+    #     print("mouse is colliding")
 
     # updates display
     pygame.display.update()
