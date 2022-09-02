@@ -16,12 +16,23 @@ pygame.display.set_caption("Space Runner")
 # pygame_icon = pygame.image.load("icon.png")
 # pygame.display.set_icon(pygame_icon)
 
-# keep screen open
-while True:
+# Clock object
+clock = pygame.time.Clock()
 
-    # draw all elements
-    # update elements
-    # eveything happens in loop
+# Font
+game_font = pygame.font.Font("font/Pixeltype.ttf", 50)
+
+# Surfaces
+sky_surface = pygame.image.load("graphics/Sky.png")
+ground_surface = pygame.image.load("graphics/ground.png")
+text_surface = game_font.render("Space Runner", False, "Black")
+
+# Enemies
+snail_surface = pygame.image.load("graphics/snail/snail1.png")
+snail_x_pos = 600
+
+# keep screen open - game loop
+while True:
 
     # close game
     for event in pygame.event.get():
@@ -29,5 +40,15 @@ while True:
             pygame.quit()
             exit()
 
+    screen.blit(sky_surface, (0, 0))
+    screen.blit(ground_surface, (0, 300))
+    screen.blit(text_surface, (300, 25))
+
+    snail_x_pos -= 4
+    if snail_x_pos < -100:
+        snail_x_pos = 800
+    screen.blit(snail_surface, (snail_x_pos, 275))
+
     # updates display
     pygame.display.update()
+    clock.tick(60)
