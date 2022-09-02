@@ -27,7 +27,7 @@ sky_surface = pygame.image.load("graphics/Sky.png").convert()
 ground_surface = pygame.image.load("graphics/ground.png").convert()
 
 # Score Text
-score_surface = game_font.render("Score:", False, "Black")
+score_surface = game_font.render("Score:", False, (64, 64, 64))
 score_rectangle = score_surface.get_rect(center=(400, 25))
 
 # Snail Enemy
@@ -55,10 +55,9 @@ while True:
     # Background
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0, 300))
-    pygame.draw.rect(screen, "Pink", score_rectangle)
-    pygame.draw.rect(screen, "Pink", score_rectangle, 15)
 
     # Score
+    pygame.draw.rect(screen, "#c0e8ec", score_rectangle)
     screen.blit(score_surface, score_rectangle)
 
     # Snail
@@ -69,6 +68,11 @@ while True:
 
     # Player
     screen.blit(player_surface, player_rectangle)
+
+    # Input
+    # keys = pygame.key.get_pressed()
+    # if keys[pygame.K_SPACE] is True:
+    #     print("jump")
 
     # Collision
     # if player_rectangle.colliderect(snail_rectangle) is True:
