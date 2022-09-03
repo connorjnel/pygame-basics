@@ -51,6 +51,12 @@ while True:
         # if event.type == pygame.MOUSEMOTION:
         #     if player_rectangle.collidepoint(event.pos):
         #         print("collission")
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                print("jump")
+
+        if event.type == pygame.KEYUP:
+            print("key up")
 
     # Background
     screen.blit(sky_surface, (0, 0))
