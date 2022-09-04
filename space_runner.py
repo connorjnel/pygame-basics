@@ -84,10 +84,10 @@ while True:
     # if player_rectangle.colliderect(snail_rectangle) is True:
     #     print("collision")
 
-    # Mouse
-    # mouse_pos = pygame.mouse.get_pos()
-    # if player_rectangle.collidepoint((mouse_pos)):
-    #     print("mouse is colliding")
+    Mouse
+    mouse_pos = pygame.mouse.get_pos()
+    if player_rectangle.collidepoint((mouse_pos)):
+        print("mouse is colliding")
 
     # updates display
     pygame.display.update()
