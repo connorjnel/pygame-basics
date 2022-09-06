@@ -76,18 +76,18 @@ while True:
     screen.blit(player_surface, player_rectangle)
 
     # Input
-    # keys = pygame.key.get_pressed()
-    # if keys[pygame.K_SPACE] is True:
-    #     print("jump")
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE] is True:
+        print("jump")
 
     # Collision
-    # if player_rectangle.colliderect(snail_rectangle) is True:
-    #     print("collision")
+    if player_rectangle.colliderect(snail_rectangle) is True:
+        print("collision")
 
     # Mouse
-    # mouse_pos = pygame.mouse.get_pos()
-    # if player_rectangle.collidepoint((mouse_pos)):
-    #     print("mouse is colliding")
+    mouse_pos = pygame.mouse.get_pos()
+    if player_rectangle.collidepoint((mouse_pos)):
+        print("mouse is colliding")
 
     # updates display
     pygame.display.update()
